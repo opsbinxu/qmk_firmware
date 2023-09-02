@@ -1,0 +1,51 @@
+{
+    "keyboard_name": "chief",
+    "manufacturer": "Chief Bing",
+    "url": "https://github.com/joshajohnson/chief",
+    "maintainer": "joshajohnson",
+    "usb": {
+      "vid": "0x6A6A",
+      "pid": "0xBADC",
+      "device_version": "0.0.1"
+    },
+    "matrix_pins": {
+      "direct": [
+        ["B2", "A8", "A13", "B4"],
+        ["B1", "B14", "B3", "B7"],
+        ["A6", "A5", "B9", "B8"]
+    ]
+    },
+    "encoder": {
+      "rotary": [
+        {"pin_a": "A7", "pin_b": "B0"},
+        {"pin_a": "B12", "pin_b": "B13"},
+        {"pin_a": "A14", "pin_b": "A15"},
+        {"pin_a": "B5", "pin_b": "B6"}
+      ]
+    },
+    "qmk": {
+      "tap_keycode_delay": 10
+    },
+    "processor": "STM32F072",
+    "bootloader": "stm32-dfu",
+    "layouts": {
+      "LAYOUT": {
+        "layout": [
+          {"matrix": [0, 0], "x": 0, "y": 0},
+          {"matrix": [0, 1], "x": 1, "y": 0},
+          {"matrix": [0, 2], "x": 2, "y": 0},
+          {"matrix": [0, 3], "x": 3, "y": 0},
+
+          {"matrix": [1, 0], "x": 0, "y": 1},
+          {"matrix": [1, 1], "x": 1, "y": 1},
+          {"matrix": [1, 2], "x": 2, "y": 1},
+          {"matrix": [1, 3], "x": 3, "y": 1},
+
+          {"matrix": [2, 0], "x": 0, "y": 2},
+          {"matrix": [2, 1], "x": 1, "y": 2},
+          {"matrix": [2, 2], "x": 2, "y": 2},
+          {"matrix": [2, 3], "x": 3, "y": 2}
+        ]
+      }
+    }
+}
