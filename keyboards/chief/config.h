@@ -22,4 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LOCKING_SUPPORT_ENABLE
 /* Locking resynchronize hack */
 #define LOCKING_RESYNC_ENABLE
-#define MOUSEKEY_MOVE_DELTA 2
+#define MOUSEKEY_MOVE_DELTA 2       // how much mouse moves for jiggler
+
+#define ENCODER_DIRECTION_FLIP      // assumed clockwise but it's flipped
+#define ENCODER_RESOLUTION 4

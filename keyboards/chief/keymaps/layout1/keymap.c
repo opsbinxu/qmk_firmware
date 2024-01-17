@@ -28,7 +28,7 @@ enum custom_codes { JIGGLER = SAFE_RANGE };
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
        MO(_LAYER1),    MO(_LAYER1),    MO(_LAYER1),    LT(_LAYER1, KC_F24),  \
-       CK_TOGG,    KC_F21,    KC_F21,    KC_MPLY,  \
+       CK_TOGG,    KC_VOLD,    KC_VOLU,    KC_MPLY,  \
        KC_F21,  KC_F22,  KC_F23,  KC_F24  \
     ),
     [_LAYER1] = LAYOUT(
@@ -74,9 +74,9 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         }
     } else if (index == 2) {
         if (clockwise) {
-            tap_code(KC_MNXT);
+            tap_code(KC_VOLU);
         } else {
-            tap_code(KC_MPRV);
+            tap_code(KC_VOLD);
         }
     } else if (index == 3) {
         if (clockwise) {
@@ -85,7 +85,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             tap_code(KC_VOLD);
         }
     }
-    return true;
+    return false;
 }
 
 /*
