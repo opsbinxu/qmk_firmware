@@ -27,13 +27,13 @@ enum custom_codes { JIGGLER = SAFE_RANGE };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
-       MO(_LAYER1),    MO(_LAYER1),    MO(_LAYER1),    LT(_LAYER1, KC_F24),  \
-       CK_TOGG,    KC_VOLD,    KC_VOLU,    KC_MPLY,  \
+       LT(_LAYER1, LGUI(KC_L)),    LT(_LAYER1, KC_CALC),    LT(_LAYER1, KC_MSTP),    LT(_LAYER1, KC_MPLY),  \
+       LCTL(KC_Z)),    LCTL(KC_X)),    LCTL(KC_C),    LCTL(KC_V),  \
        KC_F21,  KC_F22,  KC_F23,  KC_F24  \
     ),
     [_LAYER1] = LAYOUT(
        KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,  \
-       KC_F21,    KC_F21,    KC_MSTP,    KC_MPLY,  \
+       RGB_TOG,    CK_TOGG,    KC_MSTP,    KC_MPLY,  \
        KC_F21,  KC_F22,  KC_F23,  JIGGLER  \
     ), 
 };
@@ -60,30 +60,66 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 0) {
-        if (clockwise) {
-            tap_code(KC_VOLU);
-        } else {
-            tap_code(KC_VOLD);
-        }
-    } else if (index == 1) {
-        if (clockwise) {
-            tap_code(KC_VOLU);
-        } else {
-            tap_code(KC_VOLD);
-        }
-    } else if (index == 2) {
-        if (clockwise) {
-            tap_code(KC_VOLU);
-        } else {
-            tap_code(KC_VOLD);
-        }
-    } else if (index == 3) {
-        if (clockwise) {
-            tap_code(KC_VOLU);
-        } else {
-            tap_code(KC_VOLD);
-        }
+    switch (biton32(layer_state)) {
+        case 1:  // 1ST LAYER
+            if (index == 0) {
+                if (clockwise) {
+                    rgblight_step();
+                } else {
+                    rgblight_step_reverse();
+                }
+            } else if (index == 1) {
+                if (clockwise) {
+                    rgblight_increase_hue();
+                } else {
+                    rgblight_decrease_hue();
+                }
+            } else if (index == 2) {
+                if (clockwise) {
+                    rgblight_increase_sat();
+                } else {
+                    rgblight_decrease_sat();
+                }
+            } else if (index == 3) {
+                if (clockwise) {
+                    rgblight_increase_val();
+                } else {
+                    rgblight_decrease_val();
+                }
+            }
+            break;
+        default:  // BASE LAYER
+            if (index == 0) {
+                // if (clockwise) {
+                //     PLAY_SONG(my_song);
+                // } else {
+                //     PLAY_SONG(my_song);
+                // }
+                if (clockwise) {
+                    tap_code16(C(KC_MINUS));
+                } else {
+                    tap_code16(C(KC_PLUS));
+                }
+            } else if (index == 1) {
+                if (clockwise) {
+                    tap_code(KC_MS_WH_DOWN);
+                } else {
+                    tap_code(KC_MS_WH_UP);
+                }
+            } else if (index == 2) {
+                if (clockwise) {
+                    tap_code(KC_MNXT);
+                } else {
+                    tap_code(KC_MPRV);
+                }
+            } else if (index == 3) {
+                if (clockwise) {
+                    tap_code(KC_VOLU);
+                } else {
+                    tap_code(KC_VOLD);
+                }
+            }
+            break;
     }
     return false;
 }
