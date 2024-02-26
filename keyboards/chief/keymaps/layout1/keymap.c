@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
        LT(_LAYER1, KC_MYCM),    LT(_LAYER1, KC_CALC),    LT(_LAYER1, KC_MSTP),    LT(_LAYER1, KC_MPLY),  \
        LCTL(KC_Z),    LCTL(KC_A),    LCTL(KC_C),    LCTL(KC_V),  \
-       KC_F21,  KC_F22,  KC_F23,  KC_F24  \
+       LGUI(KC_L),    LGUI(KC_L),    LGUI(KC_L),    LGUI(KC_L)  \
     ),
     [_LAYER1] = LAYOUT(
        KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,  \
